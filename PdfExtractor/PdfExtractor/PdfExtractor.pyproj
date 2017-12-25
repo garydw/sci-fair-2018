@@ -5,8 +5,7 @@
     <ProjectGuid>c663736f-5a7e-40aa-b585-a7985f577006</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <StartupFile>PdfExtractor.py</StartupFile>
-    <SearchPath>
-    </SearchPath>
+    <SearchPath>..\..\bin</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>PdfExtractor</Name>
