@@ -5,4 +5,5 @@
 $pathToBin = Resolve-path ".\bin"
 $Env:path = "$pathToBin;$Env:path"
 
+
 & jupyter notebook
