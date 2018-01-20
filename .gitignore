@@ -2,10 +2,16 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-**/.vs/**
-**/.ipynb_checkpoints
 **/.suo
-env/
-bin/
-**/~*
-PdfExtractor/PdfExtractor/.vs/PdfExtractor/v15/.suo
+**/.vs/**
+__*
+*.exe
+**/env/**
+*/tf_logs/*
+*.index
+*.meta
+*.data*
+**/.vscode
+*.zip
+*.gzip
+
