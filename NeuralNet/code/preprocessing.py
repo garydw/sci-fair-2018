@@ -147,11 +147,11 @@ def prepare_data(directory, test_ratio, objective_num, data_num):
     test_features, test_labels = np.array([point[0] for point in test_data]), np.array([point[1] for point in test_data])
     new_train_ids = write_data(pre_train_images, pre_train_labels, train_ids, data_num)
     new_test_ids = write_data(test_features, test_labels, test_ids, data_num, train='test')
-    del total_images, total_labels, total_data, train_data, test_data, pre_train_images, pre_train_labels, test_features, test_labels
-    for i in range(len(new_train_ids) // 20):
-        pre_img, pre_label = images_and_labels(i, 20, new_train_ids[20 * i: 20 * i + 20], data_num)
-        post_img, post_label, post_ids = augment_data(pre_img, pre_label, train_ids[20 * i: 20 * i + 20])
-        write_data(post_img, post_label, post_ids, data_num)
+    #del total_images, total_labels, total_data, train_data, test_data, pre_train_images, pre_train_labels, test_features, test_labels
+    #for i in range(len(new_train_ids) // 20):
+    #    pre_img, pre_label = images_and_labels(i, 20, new_train_ids[20 * i: 20 * i + 20], data_num)
+    #    post_img, post_label, post_ids = augment_data(pre_img, pre_label, train_ids[20 * i: 20 * i + 20])
+    #    write_data(post_img, post_label, post_ids, data_num)
 
 def data(batch_num, batch_size, data_num, train_or_test='train'):
     data_directory = r'C:\Users\matthew\Documents\ScienceFair2017-2018\ManifestDownloads\data{}'.format(data_num) + '\\' + train_or_test + '\\ids.txt'
@@ -160,7 +160,7 @@ def data(batch_num, batch_size, data_num, train_or_test='train'):
     non_delimit = [line[:-1] for line in f.readlines()]
     f.close()
     ids = non_delimit[batch_num * batch_size: batch_num * batch_size + batch_size]
-    images, labels = images_and_labels(batch_num, batch_size, ids, train)
+    images, labels = images_and_labels(batch_num, batch_size, ids, data_num, train)
     images = np.array(images, dtype=np.float32)
     images /= np.array([255, 255, 255]).astype(np.float32)
     #images -= pixel_avg.astype(np.float32)

@@ -2,16 +2,19 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
+**/cifar*
 **/.suo
 **/.vs/**
 __*
 *.exe
 **/env/**
-*/tf_logs/*
+*tf_logs/
 *.index
 *.meta
 *.data*
 **/.vscode
 *.zip
 *.gzip
+*.gz
+
 

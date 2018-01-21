@@ -110,8 +110,8 @@ def split_train_test(data, ids, test_ratio):
     train_indices = shuffled_indices[test_set_size:]
     return data[train_indices], data[test_indices], ids[train_indices], ids[test_indices]
 
-def images_and_labels(batch_num, batch_size, ids, train=True):
-    directory = r'/home/matthew/scifair/data/train/' if train else r'/home/matthew/scifair/data/test/'
+def images_and_labels(batch_num, batch_size, ids, data_num, train=True):
+    directory = r'/home/matthew/scifair/data{}/train/'.format(data_num) if train else r'/home/matthew/scifair/data{}/test/'.format(data_num)
     images = []
     labels = []
     image_names = [name for name in os.listdir(directory) if name[-3:] != 'txt']
@@ -123,8 +123,8 @@ def images_and_labels(batch_num, batch_size, ids, train=True):
         images.append(cv2.imread(directory + image_names[entities.index(ids[i])]))
     return images, labels
 
-def write_data(training, labels, ids, train='train'):
-    directory = r'C:\Users\matthew\Documents\ScienceFair2017-2018\ManifestDownloads\data' + '\\' + train + '\\'
+def write_data(training, labels, ids, data_num, train='train'):
+    directory = r'C:\Users\matthew\Documents\ScienceFair2017-2018\ManifestDownloads\data{}'.format(data_num) + '\\' + train + '\\'
     file = open(directory + 'labels.txt', 'a+')
     for label in labels:
         file.write(str(label) + '\n')
@@ -154,14 +154,14 @@ def prepare_data(directory, test_ratio):
         post_img, post_label, post_ids = augment_data(pre_img, pre_label, train_ids[20 * i: 20 * i + 20])
         write_data(post_img, post_label, post_ids)
 
-def data(batch_num, batch_size, train_or_test='train'):
-    data_directory = r'/home/matthew/scifair/data/' + train_or_test + '/ids.txt'
+def data(batch_num, batch_size, data_num, train_or_test='train'):
+    data_directory = r'/home/matthew/scifair/data{}/'.format(data_num) + train_or_test + '/ids.txt'
     train = True if train_or_test == 'train' else False
     f = open(data_directory, 'r')
     non_delimit = [line[:-1] for line in f.readlines()]
     f.close()
     ids = non_delimit[batch_num * batch_size: batch_num * batch_size + batch_size]
-    images, labels = images_and_labels(batch_num, batch_size, ids, train)
+    images, labels = images_and_labels(batch_num, batch_size, ids, data_num, train)
     images = np.array(images, dtype=np.float32)
     images /= np.array([255, 255, 255]).astype(np.float32)
     #images -= pixel_avg.astype(np.float32)
